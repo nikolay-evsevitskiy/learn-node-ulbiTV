@@ -14,8 +14,23 @@ const path = require('path');
 // console.log('End')
 
 //Удаление директории
-fs.rmdir(path.resolve(__dirname, 'dir'), (err) => {
+// fs.rmdir(path.resolve(__dirname, 'dir'), (err) => {
+//     if (err) {
+//         throw err;
+//     }
+// })
+
+//Создание файла
+fs.writeFile(path.resolve(__dirname, 'test.txt'), '5 jweihfkfkkvfkfjh', (err) => {
+    if (err) {
+        throw err
+    }
+    console.log('Файл записан!')
+})
+
+fs.appendFile(path.resolve(__dirname, 'test.txt'), '1111111111', (err) => {
     if (err) {
         throw err;
     }
+    console.log('Файл записан!')
 })

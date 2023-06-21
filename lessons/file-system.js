@@ -56,11 +56,22 @@ const appendFileAsync = async (path, data) => {
     }))
 }
 
+const readFileAsync = async (path) => {
+    return new Promise((resolve, reject) => fs.readFile(path, {encoding: 'utf-8'}, (err, data) => {
+        if (err) {
+            return reject(err.message)
+        }
+        resolve(data)
+    }))
+}
+
 
 writeFileAsync(pathOfFile, data1)
     .then(() => appendFileAsync(pathOfFile, data2))
     .then(() => appendFileAsync(pathOfFile, '123'))
     .then(() => appendFileAsync(pathOfFile, '456'))
     .then(() => appendFileAsync(pathOfFile, '789'))
+    .then(() => readFileAsync(pathOfFile))
+    .then(data => console.log(data))
     .catch(err => console.log(err))
 

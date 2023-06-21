@@ -84,7 +84,23 @@ const removeFileAsync = async (path) => {
 //     .then(data => console.log(data))
 //     .catch(err => console.log(err))
 
-removeFileAsync(pathOfFile)
-    .then(() => {
-        console.log('file was removed')
-    })
+// removeFileAsync(pathOfFile)
+//     .then(() => {
+//         console.log('file was removed')
+//     })
+
+//Задача
+// Через переменную окружения передать строку, записать её в файл
+// прочитать файл, посчитать количество слов в файле и записать
+// их в новый файл count.txt, затем удалить первый файл
+
+const text = process.env.TEXT || '';
+
+writeFileAsync(pathOfFile, text)
+    .then(() => readFileAsync(pathOfFile))
+    .then(data => data.split(' ').length)
+    .then(count => writeFileAsync(path.resolve(__dirname, 'counnt.txt'), `Количество слов ${count}`))
+    .then(() => removeFileAsync(pathOfFile))
+    .then(() => removeFileAsync(path.resolve(__dirname, 'counnt.txt')))
+
+

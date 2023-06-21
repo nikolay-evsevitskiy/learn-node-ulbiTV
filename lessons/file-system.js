@@ -65,13 +65,26 @@ const readFileAsync = async (path) => {
     }))
 }
 
+const removeFileAsync = async (path) => {
+    return new Promise((resolve, reject) => fs.rm(path, (err) => {
+        if (err) {
+            return reject(err.message)
+        }
+        resolve()
+    }))
+}
 
-writeFileAsync(pathOfFile, data1)
-    .then(() => appendFileAsync(pathOfFile, data2))
-    .then(() => appendFileAsync(pathOfFile, '123'))
-    .then(() => appendFileAsync(pathOfFile, '456'))
-    .then(() => appendFileAsync(pathOfFile, '789'))
-    .then(() => readFileAsync(pathOfFile))
-    .then(data => console.log(data))
-    .catch(err => console.log(err))
 
+// writeFileAsync(pathOfFile, data1)
+//     .then(() => appendFileAsync(pathOfFile, data2))
+//     .then(() => appendFileAsync(pathOfFile, '123'))
+//     .then(() => appendFileAsync(pathOfFile, '456'))
+//     .then(() => appendFileAsync(pathOfFile, '789'))
+//     .then(() => readFileAsync(pathOfFile))
+//     .then(data => console.log(data))
+//     .catch(err => console.log(err))
+
+removeFileAsync(pathOfFile)
+    .then(() => {
+        console.log('file was removed')
+    })

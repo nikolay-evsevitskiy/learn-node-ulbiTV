@@ -1,14 +1,14 @@
-const os = require('os');
+const oss = require('lessons/oss');
 const cluster = require('cluster');
 
 
-// console.log(os.platform());
-// console.log(os.arch());
-// console.log(os.cpus());
-// console.log(os.cpus().length);
+// console.log(oss.platform());
+// console.log(oss.arch());
+// console.log(oss.cpus());
+// console.log(oss.cpus().length);
 
 if (cluster.isMaster) {
-    for (let i = 0; i < os.cpus().length - 2; i++) {
+    for (let i = 0; i < oss.cpus().length - 2; i++) {
         cluster.fork()
     }
     cluster.on('exit', (worker, code, signal) => {

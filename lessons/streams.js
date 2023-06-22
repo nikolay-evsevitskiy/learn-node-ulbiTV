@@ -36,13 +36,13 @@ const path = require('path')
 // writableStream.on('error')
 
 
-const http = require('http');
-
-http.createServer((req, res) => {
-    //req - readable stream
-    //res - writable stream
-    const stream = fs.createReadStream(path.resolve(__dirname, 'test.txt'))
-
-    //Stream will finish to read earlier than customer  download
-    stream.pipe(res)
-})
+// const http = require('http');
+//
+// http.createServer((req, res) => {
+//     //req - readable stream
+//     //res - writable stream
+//     const stream = fs.createReadStream(path.resolve(__dirname, 'test.txt'))
+//
+//     //Stream will finish to read earlier than customer  download
+//     stream.pipe(res)
+// })

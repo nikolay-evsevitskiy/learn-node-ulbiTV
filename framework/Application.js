@@ -8,14 +8,18 @@ module.exports = class Application {
         this.server = this._createServer();
     }
 
+    listen (port, callback) {
+        this.server.listen(port, callback)
+
+    }
+
     addRouter(router) {
-        Object.keys(router.endpoint).forEach(path => {
-            const endpoint = router.endpoint[path];
+        Object.keys(router.endpoints).forEach(path => {
+            const endpoint = router.endpoints[path];
             Object.keys(endpoint).forEach((method)=>{
                 const handler = endpoint[method];
                 this.emitter.on(this._getRouteMask(path, method), (req, res) => {
                     handler(req, res)
-
                 })
             })
         })

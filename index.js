@@ -14,11 +14,6 @@ router.get('/posts',  (req, res) => {
     res.end('YOU SEND REQUEST TO /POSTS')
 })
 
-const server = http.createServer((req, res) => {
-    const emitted = emitter.emit(`[${req.url}]:[${req.method}]`, req, res)
-    if (!emitted) {
-        res.end()
-    }
-})
+const server = http.createServer()
 
 server.listen(PORT, () => console.log(`Server started on port ${PORT}`))

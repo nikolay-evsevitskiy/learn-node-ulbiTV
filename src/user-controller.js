@@ -13,7 +13,6 @@ const getUser = async (req, res) => {
 }
 
 const createUser = async (req, res) => {
-
     const user = await User.create(req.body);
     res.send(user);
 }
